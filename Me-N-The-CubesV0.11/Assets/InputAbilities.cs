@@ -15,16 +15,16 @@ public class InputAbilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("q"))
+        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("Swarming!");
+            //Debug.Log("Swarming!");
             swarming = true;
             //rb.AddForce(heading*9, ForceMode.Acceleration);
         }else if(Input.GetKey("q") == false) { swarming = false;}
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E)|| Input.GetKey(KeyCode.Mouse1))
         {
             forcing= true;
-            Debug.Log("Forcing!");
+            //Debug.Log("Forcing!");
             //rb.AddForce(cam.transform.forward*6, ForceMode.Acceleration);
         }
         else {forcing = false;}

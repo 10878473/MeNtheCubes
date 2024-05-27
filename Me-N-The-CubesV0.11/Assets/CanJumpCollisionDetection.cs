@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanJumpCollisionDetection : MonoBehaviour
 {
     public CameraController canjumpscript;
+    public bool canJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,11 @@ public class CanJumpCollisionDetection : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision){
         canjumpscript.canjump = true;
+        canJump = true;
 
     }
     private void OnCollisionExit(Collision collision){
         canjumpscript.canjump = false;
+        canJump = false;
     }
 }
