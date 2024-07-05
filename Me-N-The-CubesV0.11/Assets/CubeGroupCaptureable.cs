@@ -5,16 +5,21 @@ using UnityEngine;
 public class CubeGroupCaptureable : MonoBehaviour
 {
     // Start is called before the first frame update
+    public CubeListUpdator CubeListUpdator;
     public int pilesize;
     public Vector3 area;
     public GameObject cube;
     public List<GameObject>cubesInPile; 
+    public GameObject cubeSwarm;
     void Start()
     {
+        CubeListUpdator = GameObject.Find("CubeCount").GetComponent<CubeListUpdator>();
+        cubeSwarm = GameObject.Find("CubeSwarm");
+
         
         for (int i = 0; i < pilesize; i++)
         {   
-            var newcube = Instantiate(cube, PointInArea(), cube.transform.rotation);
+            var newcube = Instantiate(cube, PointInArea(), cube.transform.rotation, cubeSwarm.transform);
             newcube.GetComponent<CubeGang>().isAlive = false;
             cubesInPile.Add(newcube);
         }
@@ -47,6 +52,7 @@ public class CubeGroupCaptureable : MonoBehaviour
         //makes each cube in pile active, then jump for joy
         yield return new WaitForSecondsRealtime(Random.Range(0,1f));
         cubetojump.GetComponent<CubeGang>().isAlive = true;
+        CubeListUpdator.UpdateList();
         cubetojump.GetComponent<Rigidbody>().AddForce(Vector3.up *9, ForceMode.Impulse);
     }
     IEnumerator DestroyAfterX(float x){
